@@ -5,10 +5,17 @@
 
 - clean: ['~']
 
+- create:
+    - ~/.config/btop
+
 - link:
     # bash
     ~/.bash_profile:                bash/bash_profile
     ~/.bashrc:                      bash/bashrc
+
+    # btop
+    ~/.config/btop/btop.conf:       btop/btop.conf
+    
     
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
