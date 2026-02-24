@@ -1,0 +1,85 @@
+#!/bin/bash
+# https://linuxacademy.com/blog/linux/conditions-in-bash-scripting-if-statements/
+
+# executed when user logs in
+
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+# for file in ~/.{bash_options, \
+#                 bash_aliases, \
+#                 dotfiles/functions, \
+#                 dotfiles/bash_env, \
+#                 dotfiles/bash_options}; do
+#   # readable file &  file exists & then load file
+#   [ -r "$file" ] && [ -f "$file" ] && source "$file";
+# done;
+# unset file;
+
+
+
+load_dotfiles() {
+  declare -a files=(
+    $HOME/.dotfiles/shell/_bash_options  # Options
+    $HOME/.dotfiles/shell/_bash_envs     # Exports/Environments
+    $HOME/.dotfiles/shell/_bash_aliases  # Aliases
+    $HOME/.dotfiles/shell/_bash_prompt   # Custom bash prompt
+    $HOME/.dotfiles/shell/_bash_paths    # Path modifications
+    $HOME/.dotfiles/shell/_functions/*   # Functions
+    $HOME/.bash_profile.local           # Local and private settings not under version control (e.g. git credentials)
+  )
+
+  # if these files are readable, source them
+  for index in ${!files[*]}
+  do
+    if [[ -r ${files[$index]} ]]; then
+      source ${files[$index]}
+    fi
+  done
+}
+
+load_dotfiles
+unset load_dotfiles
+
+# # Alternatively:
+# for DOTFILE in `find $HOME/.dotfiles/shell -type f`
+# do
+#   [ -f “$DOTFILE” ] && source “$DOTFILE”
+# done
+
+
+
+# If you're logging into a graphical session, arrange to start ssh-agent during your session startup
+# Do not start ssh-agent from .bashrc or .zshrc, since these files are executed by each new interactive shell. The place to start ssh-agent is in a session startup file such as .profile or .xsession.
+export SSH_AUTH_SOCK=~/.ssh/ssh-agent.$HOSTNAME.sock
+ssh-add -l 2>/dev/null >/dev/null
+if [ $? -ge 2 ]; then
+  ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null
+fi
+
+
+welcome
+
+
+# # if running bash
+# if [ -n "$BASH_VERSION" ]; then
+#     # include .bashrc if it exists
+#     if [ -f "$HOME/.bashrc" ]; then
+#   . "$HOME/.bashrc"
+#     fi
+# fi
+
+# source $HOME/.bashrc
+
+. "$HOME/.local/bin/env"

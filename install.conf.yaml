@@ -4,6 +4,11 @@
       create: true
 
 - clean: ['~']
+
+- link:
+    # bash
+    ~/.bash_profile:                bash/bash_profile
+    ~/.bashrc:                      bash/bashrc
     
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
