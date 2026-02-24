@@ -15,6 +15,9 @@
 
     # btop
     ~/.config/btop/btop.conf:       btop/btop.conf
+
+    # top
+    ~/.toprc:                       top/toprc
     
     
 - shell:
