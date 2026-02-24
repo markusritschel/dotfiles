@@ -16,6 +16,9 @@
     # btop
     ~/.config/btop/btop.conf:       btop/btop.conf
 
+    # tmux
+    ~/.tmux.conf:                   tmux/tmux.conf
+
     # top
     ~/.toprc:                       top/toprc
     
