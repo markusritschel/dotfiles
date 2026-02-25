@@ -16,12 +16,18 @@
     # btop
     ~/.config/btop/btop.conf:       btop/btop.conf
 
+    # git
+    ~/.gitconfig:                   git/gitconfig
+
     # tmux
     ~/.tmux.conf:                   tmux/tmux.conf
 
     # top
     ~/.toprc:                       top/toprc
-    
+
+    # zsh
+    ~/.zshrc:                        zsh/zshrc
+    ~/.zprofile:                     zsh/zprofile
     
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

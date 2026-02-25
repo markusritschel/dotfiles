@@ -1,0 +1,27 @@
+[user]
+	email = git@markusritschel.de
+	name = "Markus Ritschel"
+[alias]
+	ci = commit
+#	tree = log --graph --all --decorate --oneline
+	tree = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=format:"%Y-%m-%dT%H:%M:%S"
+	permission-reset = !git diff -p -R --no-ext-diff --no-color --diff-filter=M | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+[pull]
+    # Make --rebase the default
+	rebase = true
+[push]
+	default = simple
+[diff]
+    tool = meld
+[core]
+	autocrlf = input
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[init]
+	defaultBranch = main
+	templatedir = $HOME/.git-templates
+[credential]
+	helper = store
