@@ -36,6 +36,10 @@
     # zsh
     ~/.zshrc:                        zsh/zshrc
     ~/.zprofile:                     zsh/zprofile
+    ~/.oh-my-zsh/custom/themes/:
+        force: true
+        glob:  true
+        path:  zsh/oh-my-zsh/custom/themes/*
     
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
