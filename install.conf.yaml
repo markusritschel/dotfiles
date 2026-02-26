@@ -8,6 +8,7 @@
 - create:
     - ~/bin
     - ~/.config/btop
+    - ~/.tmux/plugins/tpm
 
 - link:
     # bash
@@ -38,3 +39,4 @@
     
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - [rm -r ~/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm, Install tmux plugins]
