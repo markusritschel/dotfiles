@@ -33,10 +33,10 @@ load_dotfiles() {
   declare -a files=(
     $HOME/.dotfiles/shell/_bash_options  # Options
     $HOME/.dotfiles/shell/_bash_envs     # Exports/Environments
-    $HOME/.dotfiles/shell/_bash_aliases  # Aliases
-    $HOME/.dotfiles/shell/_bash_prompt   # Custom bash prompt
-    $HOME/.dotfiles/shell/_bash_paths    # Path modifications
-    $HOME/.dotfiles/shell/_functions/*   # Functions
+    $HOME/.dotfiles/shell/envs         # Exports/Environments
+    $HOME/.dotfiles/shell/aliases      # Aliases
+    $HOME/.dotfiles/shell/paths        # Path modifications
+    $HOME/.dotfiles/shell/functions    # Functions
     $HOME/.bash_profile.local           # Local and private settings not under version control (e.g. git credentials)
   )
 
