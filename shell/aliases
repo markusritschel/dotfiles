@@ -1,0 +1,76 @@
+## display system information
+alias sysinfo='inxi -Fz'
+
+
+## restore hidden cursor in Linux Mint Cinnamon
+alias restore-cursor='gsettings set org.gnome.settings-daemon.plugins.cursor active false'
+
+
+## make content of winmail.dat files readable
+alias winmaildat='tnef'
+
+
+## Concatenate and print content of files (add line numbers)
+alias catn="cat -n"
+
+
+## Network
+alias myip="mypublicip"
+alias localip="mylocalip"
+alias scan-network="network-scan"
+
+
+## Copy public key to the pasteboard
+alias pubkey="more $HOME/.ssh/id_rsa.pub | pbcopy | printf '=> Public key copied to pasteboard.\n'"
+
+
+## PDF search
+alias findinpdf="pdf-search"
+alias pdfsearch="pdf-search"
+
+
+## directory operations
+LS_OPTIONS='--color=auto' # -hCF
+alias ls='ls ${LS_OPTIONS}'
+alias ll='ls -lh'
+alias la='ls -A'
+alias lla='ll -A'
+
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p -v'
+alias rm='rm -I'
+
+alias rcp='rsync --progress --partial --size-only --inplace --verbose'
+
+
+## Docker
+alias docker_stop='docker stop $(docker ps -aq)'
+alias docker_rm='docker rm $(docker ps -aq)'
+alias docker_rmi='docker rmi $(docker images -aq)'
+alias docker_rmv='docker volume rm $(docker volume ls -q)'
+alias docker-latex='docker run --rm -it -v "$(pwd)":"$(pwd)" --workdir "$(pwd)" --user :1000 --name TeXlive-Container tianon/latex'
+alias latex-docker='docker-latex'           # another alternative is the blang/latex docker image
+#alias tectonic-docker='docker run --rm -it -v "$(pwd)":"$(pwd)" --workdir "$(pwd)" --user :1000 --name Tectonic rekka/tectonic'
+alias tectonic-docker='docker run --rm -it -v "$(pwd)":"$(pwd)" --workdir "$(pwd)" --user :1000 --name Tectonic dxjoke/tectonic-docker'
+
+
+## Tmux
+alias mux='tmuxinator'
+
+
+## apt-get aliases
+alias orphaned='deborphan | xargs sudo apt-get -y remove --purge'
+alias cleanup='sudo apt-get autoclean && \
+               sudo apt-get autoremove -y && \
+               sudo apt-get clean && \
+               sudo apt-get remove && \
+               sudo deborphan | xargs sudo apt-get -y remove --purge && \
+               remove-old-snaps'
+alias upgrade='sudo apt-get update && sudo apt-get upgrade'
+
+
+## Metadata
+alias rm-metadata='mat2'
+alias metadata-remove='mat2'
+alias anonymize='mat2'

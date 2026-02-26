@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+
+# Set some colors
+BLACK='\e[0;30m'
+BLUE='\e[0;34m'
+GREEN='\e[0;32m'
+CYAN='\e[0;36m'
+RED='\e[0;31m'
+PURPLE='\e[0;35m'
+BROWN='\e[0;33m'
+LIGHTGRAY='\e[0;37m'
+DARKGRAY='\e[1;30m'
+LIGHTBLUE='\e[1;34m'
+LIGHTGREEN='\e[1;32m'
+LIGHTCYAN='\e[1;36m'
+LIGHTRED='\e[1;31m'
+LIGHTPURPLE='\e[1;35m'
+YELLOW='\e[1;33m'
+WHITE='\e[1;37m'
+NC='\e[0m'              # No Color
+
+
+## Print system info
+upinfo ()
+{
+  echo -ne "${RED}uptime is ${LIGHTBLUE} \t\t ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11,$12}'
+}
+
+
+## Generate welcome information
+welcome() {
+  # exec 1> >(sed -r 's/^(.*)/  \1/g')
+  # echo -e "${GREY}"; figlet -t "Hello!";
+  # echo ""
+  echo -ne "${RED}Datum:\t\t\t${LIGHTBLUE}" `date "+%A, %d. %b '%y   KW %W%n           %H:%M"`
+  echo ""
+  echo -e "${RED}Kernel Information: \t${LIGHTBLUE}" `uname -smr`
+  echo -ne "${LIGHTBLUE}";upinfo;echo ""
+  echo ""
+}
+
+
+## weather
+wttr() {
+  if [ "$1" = "help" ]; then
+    curl wttr.in/:help 2>/dev/null
+  else
+    curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-}" 2>/dev/null
+  fi
+}
+
+
+## Print local IP
+mylocalip()
+{
+  ip -json route get 8.8.8.8 | jq -r '.[].prefsrc'
+}
+
+## Print public UP
+mypublicip() {
+  curl -w '\n' https://api.ipify.org
+}
+
+## Scan local network
+network-scan()
+{
+  ip_mask=`mylocalip | awk -F. '{print $1"."$2"."$3".*"}'`
+  nmap -sn ${1-$ip_mask};
+}
+
+
+## Find from root
+ff() {
+  find / -name "*$@*" -exec ls -lAh --color=auto {} \;
+}
+
+## Find from here
+fh() {
+  find . -name "*$@*" -exec ls -lAh --color=auto {} \;
+}
+
+## Find in pdf files
+pdf-search() {
+    # find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "$1"' -- "$1" \;
+    pdfgrep -in $1 *.pdf
+}
+
+
+## Follow tail of file
+tf()
+{
+  tail -f "$1" | ccze -A
+}
+
+## Follow head of file
+hf()
+{
+  head -f "$1" | ccze -A
+}
+
+
+## Makes directory then moves into it
+mkcdr() {
+  mkdir -p -v $1 && cd $1
+}
+
+## CD and list content of directory
+cdl() {
+  if [ -n "$1" ]; then
+    builtin cd "$@" && ls -Ah --color=auto
+  else
+    builtin cd ~ && ls -Ah --color=auto
+  fi
+}
+
+## list directories with used space (MB and GB)
+used() {
+  sudo du -xh -d1 $1 |grep '^\S*[0-9\.]\+[MG]'|sort -rn
+}
+
+## Show the 10 biggest elements in current directory
+biggest() {
+  dir=${1-`pwd`}; 
+  echo The 10 biggest objects in $dir:; 
+  BLOCKSIZE=1048576; 
+  du $dir -xh -d1 | sort -hr | head -n 10; 
+}
+
+## show most popular commands (doesn't work in ZSH)
+topcommands() {
+  history | awk 'BEGIN {FS=" "} {print $1}' | sort|uniq -c | sort -rn | head -10
+}
+
+## count code lines in specific files (also wildcards allowed); empty lines will be ignored
+countlines() {
+  cat "$@" | sed '/^\s*$/d' | wc -l
+  # echo $1, $@
+  # find . -name "*.$@" -exec cat {} \; | sed '/^\s*$/d' | wc -l
+  # cat `find . -name '*.py' -print` | sed '/^\s*$/d' | wc -l
+}
+
+## count files per subdirectory
+cfd() {
+	echo "Count files for each sub-directory from here on"
+	du -a | sed '/.*\.\/.*\/.*/!d' | cut -d/ -f2 | sort | uniq -c | sort -nr
+}
+
+# Create an archive from given directory
+mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
+mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
