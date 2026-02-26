@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function myHelp () {
+cat <<-END
+Extracts a range of pages of a pdf file.
+The output file will be named "inputfile_pXX-pYY.pdf".
+
+Usage:
+------
+    pdfpageextr <PAGE1> <PAGE2> <PDF_FILE>
+
+    PAGE1 is the first page of the range to extract
+    PAGE2 is the last page of the range to extract
+    PDF_FILE is the input file
+
+
+Options:
+--------
+    -h | --help    Display this help
+
+END
+}
+
+if [ -z "$1" ]; then
+  myHelp
+  exit;
+else
+      case "$1" in
+          -h | --help)
+              myHelp
+              exit
+              ;;
+      esac 
+  # done 
+fi
+
+# /// MAIN FUNCTION /// #
+gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+   -dFirstPage=${1} \
+   -dLastPage=${2} \
+   -sOutputFile="${3%.pdf}_p${1}-p${2}.pdf" \
+   "${3}"

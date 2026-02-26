@@ -1,0 +1,47 @@
+#!/bin/bash
+
+function myHelp () {
+cat <<-END
+Compresses a PDF file. 
+The output file will be named "inputfile_compressed.pdf".
+
+Usage:
+------
+    pdfcompress <QUALITY> <PDF_FILE>
+
+    QUALITY can be one out of [screen, ebook, printer, prepress]
+    PDF_FILE is the input file
+
+
+Options:
+--------
+    -h | --help    Display this help
+
+END
+}
+
+if [ -z "$1" ]; then
+  myHelp
+  exit;
+else
+      case "$1" in
+          -h | --help)
+              myHelp
+              exit
+              ;;
+      esac 
+  # done 
+fi
+
+# /// MAIN FUNCTION /// #
+gs \
+	-dNOPAUSE \
+	-dBATCH \
+	-sDEVICE=pdfwrite \
+	-dPrinted=false \
+	-dCompatibilityLevel=1.4 \
+	-dPDFSETTINGS=/${1} \
+	-dDownsampleColorImages=true \
+	-dColorImageResolution=250 \
+	-sOutputFile="${2%.pdf}_compressed.pdf" \
+	"${2}"

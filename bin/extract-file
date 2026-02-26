@@ -1,0 +1,64 @@
+#!/bin/bash
+
+function myHelp () {
+# Using a here doc with standard out.
+cat <<-END
+Extracts a compressed file to a given destination.
+
+Usage:
+------
+    extract_file <FILE> <TARGET>
+
+    FILE        The compressed file to be extracted.
+    TARGET      The target directory. If not existent, it will be created.
+
+Options:
+--------
+    -h | --help    Display this help
+
+END
+}
+
+if [ -z "$1" ]; then
+  myHelp
+  exit;
+else
+      case "$1" in
+          -h | --help)
+              myHelp
+              exit
+              ;;
+      esac 
+  # done 
+fi
+
+
+# /// MAIN FUNCTION /// #
+target="--directory ."
+if [ -n "$2" ]; then
+  if [ ! -d "$2" ]; then
+    mkdir "$2";
+  fi
+  if [ -d "$2" ]; then
+    target="--directory ${2}";
+  fi
+fi
+
+if [ -f $1 ] ; then
+  case $1 in
+    *.tar.bz2) tar xvjf $1 $target   ;;
+    *.tar.gz)  tar xvzf $1 $target   ;;
+    *.bz2)     bunzip2 $1 $target    ;;
+    *.rar)     rar x $1 $target      ;;
+    *.gz)      gunzip $1 $target     ;;
+    *.tar)     tar xvf $1 $target    ;;
+    *.tbz2)    tar xvjf $1 $target   ;;
+    *.tgz)     tar xvzf $1 $target   ;;
+    *.zip)     unzip $1 $target      ;;
+    *.Z)       uncompress $1 $target ;;
+    *.7z)      7z x $1 $target       ;;
+    *)         echo "don't know how to extract '$1'..." ;;
+  esac
+else
+  echo "'$1' is not a valid file!"
+fi

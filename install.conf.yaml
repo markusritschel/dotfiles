@@ -3,15 +3,22 @@
       relink: true
       create: true
 
-- clean: ['~']
+- clean: ['~', '~/bin']
 
 - create:
+    - ~/bin
     - ~/.config/btop
 
 - link:
     # bash
     ~/.bash_profile:                bash/bash_profile
     ~/.bashrc:                      bash/bashrc
+
+    # bin
+    ~/bin/:
+        force: true
+        glob: true
+        path: bin/*
 
     # btop
     ~/.config/btop/btop.conf:       btop/btop.conf

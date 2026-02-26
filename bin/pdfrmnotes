@@ -1,0 +1,40 @@
+#!/bin/bash
+
+function myHelp () {
+cat <<-END
+Removes the annotations from a PDF file and writes the resulting file to a new file.
+
+Usage:
+------
+    pdfrmnotes <INPUT> <OUTPUT>
+
+    Both <INPUT> and <OUTPUT> must be PDF files. <OUTPUT> defaults to out.pdf if not specified.
+
+
+Options:
+--------
+    -h | --help    Display this help
+
+END
+}
+
+if [ -z "$1" ]; then
+    myHelp
+    exit;
+else
+    case "$1" in
+        -h | --help)
+            myHelp
+            exit
+            ;;
+    esac 
+  # done 
+fi
+
+output="${2:-out.pdf}"  
+# /// MAIN FUNCTION /// #
+pdftk "${1}" output - uncompress |\
+    sed '/^\/Annots/d' |\
+    pdftk - output "${output}" compress
+
+echo Output file written to ${output}.
