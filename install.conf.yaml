@@ -41,8 +41,8 @@
     ~/.toprc:                       top/toprc
 
     # zsh
-    ~/.zshrc:                        zsh/zshrc
-    ~/.zprofile:                     zsh/zprofile
+    ~/.zshrc:                       zsh/zshrc
+    ~/.zprofile:                    zsh/zprofile
     ~/.oh-my-zsh/custom/themes/:
         force: true
         glob:  true
