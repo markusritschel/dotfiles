@@ -8,6 +8,7 @@
 - create:
     - ~/bin
     - ~/.config/btop
+    - ~/.config/micro
     - ~/.tmux/plugins/tpm
 
 - link:
@@ -26,6 +27,9 @@
 
     # git
     ~/.gitconfig:                   git/gitconfig
+
+    # micro
+    ~/.config/micro/settings.json:  micro/settings.json
 
     # tmux
     ~/.tmux.conf:                   tmux/tmux.conf
