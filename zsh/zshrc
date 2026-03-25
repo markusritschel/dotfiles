@@ -70,6 +70,7 @@ plugins=(
     extract                    # Extract compressed files with a single command
     git                        # Provides shortcuts and aliases for Git operations
     history-substring-search   # Search command history by typing partial strings
+    mise
     tmuxinator
     zsh-autosuggestions        # Suggests commands as you type based on your history
     zsh-syntax-highlighting    # Colors your commands as you type, showing errors in real-time
@@ -120,4 +121,4 @@ function y() {
 }
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
-eval "$($HOME/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise activate zsh)"

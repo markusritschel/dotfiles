@@ -1,0 +1,6 @@
+[tools]
+gh = "latest"
+node = "latest"
+pnpm = "latest"
+python = "latest"
+usage = "latest"

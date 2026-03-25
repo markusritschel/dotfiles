@@ -31,6 +31,9 @@
     # micro
     ~/.config/micro/settings.json:  micro/settings.json
 
+    # mise
+    ~/.config/mise/config.toml:     mise/config.toml
+
     # tmux
     ~/.tmux.conf:                   tmux/tmux.conf
 
