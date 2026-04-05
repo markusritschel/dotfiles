@@ -43,6 +43,8 @@ alias rm='rm -I'
 
 alias rcp='rsync --progress --partial --size-only --inplace --verbose'
 
+alias back='cd $OLDPWD'
+
 
 ## Docker
 alias docker_stop='docker stop $(docker ps -aq)'
