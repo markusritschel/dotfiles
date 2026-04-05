@@ -23,10 +23,15 @@ zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' list-color ''
 zstyle ':completion:*' matcher-list 'r:|[._-]=** r:|=**' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 zstyle :compinstall filename '$HOME/.zshrc'
-
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
+
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C   # -C = Cache nutzen, nur täglich neu laden
+fi
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -125,7 +130,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(~/.local/bin/mise activate zsh)"
 
 
