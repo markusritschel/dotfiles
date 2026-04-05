@@ -72,7 +72,6 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     colored-man-pages          # Adds colors to man pages for better readability
-    command-not-found
     extract                    # Extract compressed files with a single command
     git                        # Provides shortcuts and aliases for Git operations
     history-substring-search   # Search command history by typing partial strings
