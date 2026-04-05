@@ -149,3 +149,11 @@ cfd() {
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+
+# Patch all files
+patch-all() {
+    find . -name "*.rej" | sed 's/\.rej$//' | while read f; do
+      patch --merge "$f" < "${f}.rej"
+    done
+}
