@@ -25,6 +25,13 @@
     # btop
     ~/.config/btop/btop.conf:       btop/btop.conf
 
+    # claude
+    ~/.claude/hooks:
+        force: true
+        glob: true
+        path: claude/hooks/*.sh
+    ~/.claude/settings.json:        claude/settings.json
+
     # git
     ~/.gitconfig:                   git/gitconfig
 
