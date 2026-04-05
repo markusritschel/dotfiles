@@ -1,3 +1,6 @@
+# Uncomment for a loading time profile of the various components (also see bottom of file):
+# zmodload zsh/zprof
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -122,3 +125,7 @@ function y() {
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(~/.local/bin/mise activate zsh)"
+
+
+# Uncomment for a loading time profile of the various components (also see top of file):
+# zprof
