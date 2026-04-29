@@ -35,6 +35,10 @@
     # git
     ~/.gitconfig:                   git/gitconfig
 
+    # espanso
+    ~/.config/espanso/config/default.yml:  espanso/config/default.yml
+    ~/.config/espanso/match/base.yml:  espanso/match/base.yml
+
     # micro
     ~/.config/micro/settings.json:  micro/settings.json
 
