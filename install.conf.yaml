@@ -58,3 +58,6 @@
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
     - [rm -r ~/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm, Install tmux plugins]
+    - description: "Linking docker.json to /etc/docker/docker.json"
+      command: sudo mkdir -p /etc/docker && sudo ln -sf "$HOME/.dotfiles/docker/daemon.json" /etc/docker/daemon.json
+      # Following https://www.erikdonner.dev/2024/11/01/wlan-im-ice-mit-linux-und-docker/
