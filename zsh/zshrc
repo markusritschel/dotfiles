@@ -129,3 +129,5 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 # Uncomment for a loading time profile of the various components (also see top of file):
 # zprof
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
