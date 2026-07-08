@@ -2,8 +2,10 @@
 # Notification hook — alerts when Claude is idle and waiting for user input.
 # Matcher: idleprompt
 
-PROJECT=$(git rev-parse --show-toplevel 2>/dev/null | xargs basename 2>/dev/null)
-[ -z "$PROJECT" ] && PROJECT=$(basename "$PWD")
+# Derive a short project name. CLAUDE_PROJECT_DIR is set even when the hook's
+# CWD is /tmp (e.g. for background tasks/subagents), so prefer it.
+PROJECT=$(git -C "${CLAUDE_PROJECT_DIR:-$PWD}" rev-parse --show-toplevel 2>/dev/null | xargs basename 2>/dev/null)
+[ -z "$PROJECT" ] && PROJECT=$(basename "${CLAUDE_PROJECT_DIR:-$PWD}")
 
 TITLE="Claude Code — Needs input 💬"
 BODY="$PROJECT"

@@ -59,7 +59,7 @@
     ],
     "Notification": [
       {
-        "matcher": "idleprompt",
+        "matcher": "idle_prompt",
         "hooks": [
           {
             "type": "command",
