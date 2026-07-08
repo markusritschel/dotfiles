@@ -126,6 +126,7 @@ function y() {
 
 eval "$(~/.local/bin/mise activate zsh)"
 
+set -a; source ~/.env; set +a
 
 # Uncomment for a loading time profile of the various components (also see top of file):
 # zprof
