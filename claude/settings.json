@@ -67,6 +67,17 @@
           }
         ]
       }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/precompact-guard.sh"
+          }
+        ]
+      }
     ]
   },
   "enableWorkflows": true,
