@@ -4,7 +4,7 @@
 [alias]
 	ci = commit
 #	tree = log --graph --all --decorate --oneline
-	tree = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=format:"%Y-%m-%dT%H:%M:%S"
+	tree = log --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%Cgreen%d %Creset%s' --date=format:"%Y-%m-%dT%H:%M"
 	permission-reset = !git diff -p -R --no-ext-diff --no-color --diff-filter=M | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
 [pull]
     # Make --rebase the default
@@ -25,3 +25,5 @@
 	templatedir = $HOME/.git-templates
 [credential]
 	helper = store
+[fetch]
+	prune = true
