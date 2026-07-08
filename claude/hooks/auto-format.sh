@@ -1,6 +1,6 @@
 #!/bin/bash
-# PostToolUse hook — auto-formats Python and JS/TS files after writes/edits.
-# Matcher: Write|Edit|MultiEdit
+# PostToolUse hook — auto-formats Python and JS/TS files after Claude creates new files.
+# Matcher: Write
 #
 # Python:  ruff format + ruff check --fix via uv run (if in a uv project),
 #          falling back to ruff directly (e.g. installed via mise).
@@ -64,7 +64,7 @@ case "$FILE" in
     ;;
 
   # ── JavaScript / TypeScript / web assets ────────────────────────────────────
-  *.js|*.jsx|*.ts|*.tsx|*.css|*.json|*.html)
+  *.js|*.jsx|*.ts|*.tsx|*.css|*.scss|*.less|*.json|*.html|*.vue|*.graphql|*.gql|*.yaml|*.yml|*.md|*.mdx)
     PNPM_ROOT=$(find_project_root "pnpm-lock.yaml" 2>/dev/null || true)
 
     if [ -n "$PNPM_ROOT" ] && command -v pnpm &>/dev/null; then
