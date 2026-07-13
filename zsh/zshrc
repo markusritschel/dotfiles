@@ -100,9 +100,15 @@ source $HOME/.dotfiles/shell/envs
 source $HOME/.dotfiles/shell/paths
 source $HOME/.dotfiles/shell/functions
 
-#eval "$(ssh-agent -s)"
-#eval "$(ssh-agent -s > /dev/null 2>&1)"
-eval "$(ssh-agent -s | grep -v 'Agent pid' 2>/dev/null)"
+# Reuse a single ssh-agent across shells instead of spawning one per shell
+_ssh_agent_env="$HOME/.ssh/agent.env"
+[[ -f "$_ssh_agent_env" ]] && source "$_ssh_agent_env" >/dev/null
+if [[ -z "$SSH_AGENT_PID" ]] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+    mkdir -p "$HOME/.ssh"
+    ssh-agent -s > "$_ssh_agent_env"
+    source "$_ssh_agent_env" >/dev/null
+fi
+unset _ssh_agent_env
 
 . "$HOME/.local/bin/env"
 
