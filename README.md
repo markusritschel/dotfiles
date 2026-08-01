@@ -45,6 +45,22 @@ To re-link dotfiles after making changes (without reinstalling packages):
 cd ~/.dotfiles && ./install.sh
 ```
 
+### Linking only, without side effects
+
+`install.sh` also runs the `shell:` section of `install.conf.yaml`, which is *not*
+idempotent in the harmless sense: it wipes and re-clones the tmux plugin manager
+(`rm -r ~/.tmux/plugins/tpm`) and asks for `sudo` to symlink the Docker daemon config.
+When you only added or changed a link entry, skip all of that:
+
+```bash
+cd ~/.dotfiles
+./.dotbot/bin/dotbot -c install.conf.yaml         --only link   # public
+./.dotbot/bin/dotbot -c private/install.conf.yaml --only link   # private
+```
+
+Note that `--only link` also skips the `clean:` directive, so dead symlinks from
+removed entries are not pruned — run the full `./install.sh` for that.
+
 
 ## Notes
 - `bootstrap.sh` is safe to re-run — package managers skip already-installed packages.
