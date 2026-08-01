@@ -76,3 +76,9 @@ alias upgrade='sudo apt-get update && sudo apt-get upgrade'
 alias rm-metadata='mat2'
 alias metadata-remove='mat2'
 alias anonymize='mat2'
+
+
+## Tipptraining
+# Lektionsdatei ist ein Positionsargument und kann nicht in ~/.gtypistrc stehen.
+# Deutscher QWERTZ-Kurs; Optionen kommen aus ~/.gtypistrc.
+alias tippen='gtypist /usr/share/gtypist/ktde.typ'

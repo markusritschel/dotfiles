@@ -1,0 +1,22 @@
+# GNU Typist – persistente Optionen
+# Format: eine Option pro Zeile, Lang- oder Kurzname ohne '-'/'--', '#' = Kommentar
+# Referenz: info gtypist -> "Configuration file"
+
+# Fehlerschwelle von 3 % auf 2 % – erzwingt Wiederholung, bis sauber getippt.
+# Bewusst als Integer: gtypist parst Floats locale-abhängig, unter
+# LC_NUMERIC=de_DE.UTF-8 scheitert "2.0" mit "invalid numeric value".
+# Ein Dezimalwert müsste hier "2,0" heißen und wäre damit nicht portabel.
+max-error=2
+
+# Übungen dürfen nicht übersprungen werden
+no-skip
+
+# Fehler per Reverse-Video hervorheben
+show-errors
+
+# Persönliche Bestzeiten mitschreiben (~/.gtypist-bestlog)
+personal-best
+
+# Hinweis: Die Lektionsdatei ist ein Positionsargument und kann hier NICHT
+# gesetzt werden. Deutscher QWERTZ-Kurs: gtypist /usr/share/gtypist/ktde.typ
+# (siehe Alias in shell/aliases)

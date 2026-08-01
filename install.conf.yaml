@@ -35,6 +35,9 @@
     # git
     ~/.gitconfig:                   git/gitconfig
 
+    # gtypist
+    ~/.gtypistrc:                   gtypist/gtypistrc
+
     # espanso
     ~/.config/espanso/config/default.yml:  espanso/config/default.yml
     ~/.config/espanso/match/base.yml:  espanso/match/base.yml
