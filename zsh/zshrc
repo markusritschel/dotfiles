@@ -137,4 +137,3 @@ set -a; source ~/.env; set +a
 # Uncomment for a loading time profile of the various components (also see top of file):
 # zprof
 
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
