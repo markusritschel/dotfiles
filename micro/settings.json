@@ -1,4 +1,14 @@
 {
-    "colorscheme": "catppuccin-macchiato",
-    "tabstospaces": true,
+  "colorscheme": "catppuccin-macchiato",
+  "ft:yaml": {
+    "tabsize": 2
+  },
+  "ft:json": {
+    "tabsize": 2
+  },
+  "autosave": 10,
+  "matchbracestyle": "highlight",
+  "softwrap": true,
+  "tabstospaces": true,
+  "wordwrap": true
 }
