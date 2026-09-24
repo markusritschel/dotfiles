@@ -137,3 +137,4 @@ set -a; source ~/.env; set +a
 # Uncomment for a loading time profile of the various components (also see top of file):
 # zprof
 
+export PATH="$HOME/.local/bin:$PATH"
